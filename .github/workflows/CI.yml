@@ -18,20 +18,21 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         submodules: recursive
 
     - name: Install Python
-      uses: actions/setup-python@v4 # Use pip to install latest CMake, & FORD/Jin2For, etc.
+      # Use pip to install latest CMake, & FORD/Jin2For, etc.
+      uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
       with:
         python-version: ${{ matrix.python-version }}
 
     - name: Setup Graphviz
-      uses: ts-graphviz/setup-graphviz@v1
+      uses: ts-graphviz/setup-graphviz@6005aebc0168bb7f1c4b55f1e611648e57fb15d0 # v2.0.3
 
     - name: Setup Fortran Package Manager
-      uses: fortran-lang/setup-fpm@v5
+      uses: fortran-lang/setup-fpm@bccff8c08c1bda4e0b88b02aa69fc8b7d8f286f1 # v11
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -71,7 +72,7 @@ jobs:
         COV_DIR: build/coverage
 
     - name: Upload coverage report
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3.1.6
       with:
         files: build/coverage/coverage.info
 
@@ -80,7 +81,7 @@ jobs:
 
     - name: Deploy Documentation
       if: github.ref == 'refs/heads/master'
-      uses: JamesIves/github-pages-deploy-action@v4.4.1
+      uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4.9.0
       with:
         branch: gh-pages # The branch the action should deploy to.
         folder: doc  # The folder the action should deploy.
